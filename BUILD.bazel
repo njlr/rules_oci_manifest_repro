@@ -35,7 +35,7 @@ sh_binary(
 
 genrule(
   name = "inspect",
-  outs = [ "inspect.json" ],
+  outs = [ "inspect.txt" ],
   cmd = "$(location :inspect_manifest) $(location :hello_world_tarball) 'bazel/hello_world:latest' > $@",
   tools = [ ":inspect_manifest" ],
   srcs = [ ":hello_world_tarball" ],
@@ -45,6 +45,6 @@ genrule(
 write_source_files(
   name = "write_inspect",
   files = {
-    "expected_inspect.json": ":inspect",
+    "expected_inspect.txt": ":inspect",
   },
 )
