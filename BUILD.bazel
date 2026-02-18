@@ -1,9 +1,15 @@
 load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
-load("@rules_oci//oci:defs.bzl", "oci_load")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load")
+
+oci_image(
+  name = "hello_world",
+  base = "@hello_world",
+)
 
 oci_load(
   name = "hello_world_tarball",
-  image = "@hello_world",
+  # image = "@hello_world",
+  image = ":hello_world",
   repo_tags = [ "bazel/hello_world:latest" ],
 )
 

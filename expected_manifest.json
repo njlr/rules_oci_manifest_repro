@@ -1,6 +1,6 @@
 [
   {
-    "Config": "blobs/sha256/1b44b5a3e06a9aae883e7bf25e45c100be0bb81a0e01b32de604f3ac44711634",
+    "Config": "blobs/sha256/212672279576650e89a8bddacd9f77475684a82ca9ed4c677348ae52b42bfef6",
     "RepoTags": [
       "bazel/hello_world:latest"
     ],
