@@ -1,0 +1,17 @@
+# rules_oci_repro
+
+Expected manifest:
+
+```json
+[
+  {
+    "Config": "blobs/sha256/1b44b5a3e06a9aae883e7bf25e45c100be0bb81a0e01b32de604f3ac44711634",
+    "RepoTags": [
+      "bazel/hello_world:latest"
+    ],
+    "Layers": [
+      "blobs/sha256/17eec7bbc9d79fa397ac95c7283ecd04d1fe6978516932a3db110c6206430809.tar.gz"
+    ]
+  }
+]
+```

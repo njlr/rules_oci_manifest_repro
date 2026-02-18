@@ -1,0 +1,22 @@
+"rules_oci_repro"
+
+bazel_dep(name = "aspect_bazel_lib", version = "2.22.5")
+bazel_dep(name = "rules_oci", version = "2.2.0")
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "hello_world",
+    digest = "sha256:ef54e839ef541993b4e87f25e752f7cf4238fa55f017957c2eb44077083d7a6a",
+    image = "docker.io/library/hello-world",
+    platforms = [
+        "linux/amd64",
+        "linux/arm64",
+        "linux/arm64/v8",
+        "macos/amd64",
+        "macos/arm64",
+        "macos/arm64/v8",
+        "windows/amd64",
+    ],
+    # tag = "latest",
+)
+use_repo(oci, "hello_world", "hello_world_linux_amd64", "hello_world_linux_arm64", "hello_world_linux_arm64_v8", "hello_world_macos_amd64", "hello_world_macos_arm64", "hello_world_macos_arm64_v8", "hello_world_windows_amd64")

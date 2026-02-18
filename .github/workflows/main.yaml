@@ -1,0 +1,25 @@
+name: Main
+on: [ push, pull_request ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Bazel Test
+        shell: bash
+        run: |
+          bazel test //...
+
+      - name: Load and Inspect Manifest
+        shell: bash
+        run: |
+          bazel run //:hello_world_tarball
+          docker inspect bazel/hello_world:latest

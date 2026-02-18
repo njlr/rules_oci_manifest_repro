@@ -1,0 +1,29 @@
+load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
+load("@rules_oci//oci:defs.bzl", "oci_load")
+
+oci_load(
+  name = "hello_world_tarball",
+  image = "@hello_world",
+  repo_tags = [ "bazel/hello_world:latest" ],
+)
+
+filegroup(
+  name = "hello_world_archive",
+  srcs = [ ":hello_world_tarball" ],
+  output_group = "tarball",
+)
+
+genrule(
+  name = "manifest",
+  outs = [ "manifest.json" ],
+  cmd = "tar -xOf $(location :hello_world_archive) manifest.json > $@",
+  srcs = [ ":hello_world_archive" ],
+  local = True,
+)
+
+write_source_files(
+  name = "write_manifest",
+  files = {
+    "expected_manifest.json": ":manifest",
+  },
+)
