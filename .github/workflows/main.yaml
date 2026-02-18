@@ -13,13 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Bazel Test
-        shell: bash
-        run: |
-          bazel test --verbose_failures --test_output=streamed --keep_going //...
-
       - name: Load and Inspect Manifest
         shell: bash
         run: |
           bazel run //:hello_world_tarball
           docker inspect bazel/hello_world:latest
+
+      - name: Bazel Test
+        shell: bash
+        run: |
+          bazel test --verbose_failures --test_output=streamed --keep_going //...
