@@ -16,7 +16,7 @@ jobs:
       - name: Bazel Test
         shell: bash
         run: |
-          bazel test --verbose_failures --test_output=streamed //...
+          bazel test --verbose_failures --test_output=streamed --keep_going //...
 
       - name: Load and Inspect Manifest
         shell: bash
