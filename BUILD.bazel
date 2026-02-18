@@ -27,3 +27,24 @@ write_source_files(
     "expected_manifest.json": ":manifest",
   },
 )
+
+sh_binary(
+  name = "inspect_manifest",
+  srcs = [ "docker_inspect.sh" ],
+)
+
+genrule(
+  name = "inspect",
+  outs = [ "inspect.json" ],
+  cmd = "$(location :inspect_manifest) $(location :hello_world_tarball) 'bazel/hello_world:latest' > $@",
+  tools = [ ":inspect_manifest" ],
+  srcs = [ ":hello_world_tarball" ],
+  local = True,
+)
+
+write_source_files(
+  name = "write_inspect",
+  files = {
+    "expected_inspect.json": ":inspect",
+  },
+)
