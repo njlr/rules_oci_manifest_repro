@@ -1,7 +1,7 @@
 "rules_oci_repro"
 
 bazel_dep(name = "aspect_bazel_lib", version = "2.22.5")
-bazel_dep(name = "rules_oci", version = "2.2.0")
+bazel_dep(name = "rules_oci", version = "2.2.7")
 
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 oci.pull(
